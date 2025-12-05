@@ -250,6 +250,17 @@ textarea {
     display: flex;
     flex-direction: column;
     line-height: 1.2;
+    flex-shrink: 0;
+}
+
+.logo-img {
+    height: 60px;
+    width: auto;
+    transition: var(--transition-base);
+}
+
+.header.scrolled .logo-img {
+    height: 50px;
 }
 
 .logo-text {
@@ -281,6 +292,13 @@ textarea {
 
 .header.scrolled .logo-tagline {
     color: var(--gray);
+}
+
+/* Footer Logo */
+.footer-logo-img {
+    height: 70px;
+    width: auto;
+    margin-bottom: 15px;
 }
 
 .nav-menu {
@@ -1722,7 +1740,37 @@ textarea {
     gap: 20px;
 }
 
-.enrol-feature i {
+.enrol-feature-link {
+    padding: 20px;
+    border-radius: var(--radius-md);
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-base);
+    text-decoration: none;
+    color: inherit;
+}
+
+.enrol-feature-link:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    background: linear-gradient(135deg, rgba(94, 53, 177, 0.05) 0%, rgba(0, 188, 212, 0.05) 100%);
+}
+
+.enrol-feature-link:hover i:first-child {
+    transform: scale(1.1);
+}
+
+.link-icon {
+    font-size: 0.75rem !important;
+    margin-left: 8px;
+    opacity: 0.7;
+    width: auto !important;
+    height: auto !important;
+    background: none !important;
+    display: inline !important;
+}
+
+.enrol-feature i:first-child {
     width: 50px;
     height: 50px;
     background: var(--gradient-primary);
@@ -1733,6 +1781,7 @@ textarea {
     color: var(--white);
     font-size: 1.2rem;
     flex-shrink: 0;
+    transition: var(--transition-base);
 }
 
 .enrol-feature h4 {
