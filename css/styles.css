@@ -126,11 +126,25 @@ button {
 .sidebar-header {
     padding: 25px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
 }
 
 .sidebar-logo img {
     max-width: 160px;
     height: auto;
+}
+
+.sidebar-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--white);
+    text-align: center;
+    margin: 0;
+    font-family: var(--font-secondary);
+    letter-spacing: 0.5px;
 }
 
 .sidebar-nav {
@@ -265,9 +279,24 @@ button {
     justify-content: space-between;
 }
 
+.mobile-logo-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
 .mobile-logo img {
     height: 45px;
     width: auto;
+}
+
+.mobile-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--dark-gray);
+    font-family: var(--font-secondary);
+    letter-spacing: 0.3px;
 }
 
 .mobile-menu-btn {
