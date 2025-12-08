@@ -1626,6 +1626,218 @@ button {
 }
 
 /* =====================================================
+   VALUES SECTION
+   ===================================================== */
+.values-section {
+    padding: var(--section-padding) 0;
+    background: var(--off-white);
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.value-card {
+    background: var(--white);
+    padding: 40px 30px;
+    border-radius: var(--radius-lg);
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.value-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--primary);
+    transition: var(--transition);
+}
+
+.value-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+.value-card:hover::before {
+    height: 6px;
+}
+
+.value-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.value-card:hover .value-icon {
+    transform: scale(1.1);
+}
+
+.value-icon i {
+    font-size: 1.8rem;
+    color: var(--white);
+}
+
+.value-card h3 {
+    font-size: 1.2rem;
+    color: var(--dark-gray);
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.value-card p {
+    font-size: 0.9rem;
+    color: var(--gray);
+    line-height: 1.6;
+}
+
+/* =====================================================
+   ACTIVITIES/TIMELINE SECTION
+   ===================================================== */
+.activities-section {
+    padding: var(--section-padding) 0;
+    background: linear-gradient(180deg, var(--off-white) 0%, var(--white) 100%);
+}
+
+.activities-timeline {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.activities-timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
+    transform: translateX(-50%);
+}
+
+.activity-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 50px;
+    align-items: center;
+}
+
+.activity-item:nth-child(even) {
+    direction: rtl;
+}
+
+.activity-item:nth-child(even) > * {
+    direction: ltr;
+}
+
+.activity-time {
+    position: relative;
+    text-align: right;
+    padding-right: 40px;
+}
+
+.activity-item:nth-child(even) .activity-time {
+    text-align: left;
+    padding-right: 0;
+    padding-left: 40px;
+}
+
+.activity-time strong {
+    font-size: 1rem;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.activity-time::after {
+    content: '';
+    position: absolute;
+    right: -22px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background: var(--white);
+    border: 4px solid var(--primary);
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.activity-item:nth-child(even) .activity-time::after {
+    right: auto;
+    left: -22px;
+}
+
+.activity-content {
+    background: var(--white);
+    padding: 30px 25px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    border-left: 4px solid var(--primary);
+    transition: var(--transition);
+}
+
+.activity-item:nth-child(even) .activity-content {
+    border-left: none;
+    border-right: 4px solid var(--primary);
+}
+
+.activity-content:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.activity-content h4 {
+    font-size: 1.1rem;
+    color: var(--dark-gray);
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.activity-content p {
+    font-size: 0.9rem;
+    color: var(--gray);
+    line-height: 1.6;
+}
+
+/* =====================================================
+   ABOUT EXTRA STYLING
+   ===================================================== */
+.about-extra {
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+    padding: 20px 25px;
+    border-radius: var(--radius-md);
+    margin-top: 25px;
+}
+
+.about-extra h4 {
+    font-size: 1.05rem;
+    color: var(--white);
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.about-extra p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+}
+
+/* =====================================================
    RESPONSIVE DESIGN
    ===================================================== */
 @media (max-width: 1200px) {
@@ -1641,6 +1853,52 @@ button {
 
     .rooms-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .activities-timeline::before {
+        display: none;
+    }
+
+    .activity-item {
+        grid-template-columns: 1fr;
+    }
+
+    .activity-item:nth-child(even) {
+        direction: ltr;
+    }
+
+    .activity-time {
+        text-align: left;
+        padding-right: 0;
+        padding-left: 0;
+        padding-bottom: 15px;
+    }
+
+    .activity-item:nth-child(even) .activity-time {
+        text-align: left;
+        padding-left: 0;
+    }
+
+    .activity-time::after {
+        display: none;
+    }
+
+    .activity-item:nth-child(even) .activity-time::after {
+        display: none;
+    }
+
+    .activity-content {
+        border-left: none;
+        border-top: 4px solid var(--primary);
+    }
+
+    .activity-item:nth-child(even) .activity-content {
+        border-right: none;
+        border-top: 4px solid var(--primary);
     }
 }
 
@@ -1718,6 +1976,10 @@ button {
     .steam-card:nth-child(5) {
         grid-column: span 2;
         max-width: 350px;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr;
     }
 
     .facilities-gallery {
