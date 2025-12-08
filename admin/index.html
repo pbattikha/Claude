@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iSTEAM AHEAD CMS - Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="page active">
+        <div class="login-container">
+            <div class="login-box">
+                <div class="login-header">
+                    <h1>iSTEAM AHEAD CMS</h1>
+                    <p>Content Management System</p>
+                </div>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" placeholder="admin" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="admin123" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    <p class="login-note">Default: admin / admin123</p>
+                </form>
+                <div id="loginError" class="error-message" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="page">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>Admin Panel</h2>
+                <button id="logoutBtn" class="btn-logout" title="Logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+            <div class="user-info">
+                <p><strong id="currentUser">Admin</strong></p>
+                <span id="currentRole" class="badge badge-admin">Admin</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link active" data-section="dashboard">
+                    <i class="fas fa-chart-line"></i> Dashboard
+                </a></li>
+                <li><a href="#" class="nav-link" data-section="hero">
+                    <i class="fas fa-image"></i> Hero Section
+                </a></li>
+                <li><a href="#" class="nav-link" data-section="about">
+                    <i class="fas fa-info-circle"></i> About Us
+                </a></li>
+                <li><a href="#" class="nav-link" data-section="rooms">
+                    <i class="fas fa-door-open"></i> Rooms
+                </a></li>
+                <li><a href="#" class="nav-link" data-section="steam">
+                    <i class="fas fa-flask-vial"></i> STEAM Program
+                </a></li>
+                <li><a href="#" class="nav-link" data-section="testimonials">
+                    <i class="fas fa-comments"></i> Testimonials
+                </a></li>
+                <li><a href="#" class="nav-link" data-section="contact">
+                    <i class="fas fa-phone"></i> Contact Info
+                </a></li>
+                <li><a href="#" class="nav-link" data-section="navigation">
+                    <i class="fas fa-bars"></i> Navigation Menu
+                </a></li>
+                <li><a href="#" class="nav-link" data-section="users">
+                    <i class="fas fa-users"></i> Users
+                </a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <button id="publishBtn" class="btn btn-success btn-block">
+                    <i class="fas fa-cloud-upload-alt"></i> Publish Changes
+                </button>
+                <p id="lastSaved" class="small">Last saved: Never</p>
+            </div>
+        </nav>
+
+        <main class="content">
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="section active">
+                <div class="section-header">
+                    <h2>Dashboard</h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-file-alt"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="contentItemCount">0</div>
+                            <div class="stat-label">Content Items</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-image"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="imageCount">0</div>
+                            <div class="stat-label">Images</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-users"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="userCount">0</div>
+                            <div class="stat-label">Users</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="lastUpdate">--</div>
+                            <div class="stat-label">Last Update</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-box">
+                    <h3>Quick Actions</h3>
+                    <div class="quick-actions">
+                        <a href="#" class="action-btn" onclick="switchSection('hero')">
+                            <i class="fas fa-image"></i>
+                            <span>Edit Hero</span>
+                        </a>
+                        <a href="#" class="action-btn" onclick="switchSection('about')">
+                            <i class="fas fa-pencil"></i>
+                            <span>Edit About</span>
+                        </a>
+                        <a href="#" class="action-btn" onclick="switchSection('rooms')">
+                            <i class="fas fa-plus"></i>
+                            <span>Add Room</span>
+                        </a>
+                        <a href="#" class="action-btn" onclick="switchSection('testimonials')">
+                            <i class="fas fa-star"></i>
+                            <span>Add Testimonial</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Hero Section -->
+            <section id="hero-section" class="section">
+                <div class="section-header">
+                    <h2>Hero Section</h2>
+                    <p>Edit the main hero banner content</p>
+                </div>
+                <div class="section-box">
+                    <form id="heroForm">
+                        <div class="form-group">
+                            <label for="heroTitle">Title</label>
+                            <input type="text" id="heroTitle" placeholder="Welcome to iSTEAM AHEAD" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="heroSubtitle">Subtitle</label>
+                            <input type="text" id="heroSubtitle" placeholder="Early Learning Centre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="heroDescription">Description</label>
+                            <textarea id="heroDescription" rows="3" placeholder="Describe your centre..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="heroImage">Hero Image</label>
+                            <div class="image-upload-box">
+                                <input type="file" id="heroImage" accept="image/*" class="image-input">
+                                <div class="upload-area">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>Drag & drop or click to upload</p>
+                                </div>
+                            </div>
+                            <div id="heroImagePreview" class="image-preview"></div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Hero Section</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about-section" class="section">
+                <div class="section-header">
+                    <h2>About Us</h2>
+                    <p>Edit the about section content</p>
+                </div>
+                <div class="section-box">
+                    <form id="aboutForm">
+                        <div class="form-group">
+                            <label for="aboutTitle">Title</label>
+                            <input type="text" id="aboutTitle" placeholder="About Us" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="aboutDescription">Description</label>
+                            <textarea id="aboutDescription" rows="5" placeholder="Write your about section..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="aboutVision">Vision</label>
+                            <textarea id="aboutVision" rows="3" placeholder="Our vision..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save About Section</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Rooms Section -->
+            <section id="rooms-section" class="section">
+                <div class="section-header">
+                    <h2>Rooms</h2>
+                    <button class="btn btn-success btn-sm" onclick="addRoom()">
+                        <i class="fas fa-plus"></i> Add Room
+                    </button>
+                </div>
+                <div class="section-box">
+                    <div id="roomsList" class="sortable-list"></div>
+                </div>
+            </section>
+
+            <!-- STEAM Section -->
+            <section id="steam-section" class="section">
+                <div class="section-header">
+                    <h2>STEAM Program</h2>
+                    <button class="btn btn-success btn-sm" onclick="addSteam()">
+                        <i class="fas fa-plus"></i> Add Discipline
+                    </button>
+                </div>
+                <div class="section-box">
+                    <div id="steamList" class="sortable-list"></div>
+                </div>
+            </section>
+
+            <!-- Testimonials Section -->
+            <section id="testimonials-section" class="section">
+                <div class="section-header">
+                    <h2>Testimonials</h2>
+                    <button class="btn btn-success btn-sm" onclick="addTestimonial()">
+                        <i class="fas fa-plus"></i> Add Testimonial
+                    </button>
+                </div>
+                <div class="section-box">
+                    <div id="testimonialsList" class="sortable-list"></div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact-section" class="section">
+                <div class="section-header">
+                    <h2>Contact Information</h2>
+                </div>
+                <div class="section-box">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="contactAddress">Address</label>
+                            <input type="text" id="contactAddress" placeholder="123 Main Street" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactPhone">Phone</label>
+                            <input type="tel" id="contactPhone" placeholder="+61 2 1234 5678" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Email</label>
+                            <input type="email" id="contactEmail" placeholder="info@isteamahead.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactHours">Opening Hours</label>
+                            <textarea id="contactHours" rows="3" placeholder="Monday - Friday, 7:00 AM - 6:00 PM"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Contact Info</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Navigation Menu Section -->
+            <section id="navigation-section" class="section">
+                <div class="section-header">
+                    <h2>Navigation Menu</h2>
+                    <button class="btn btn-success btn-sm" onclick="addMenuItem()">
+                        <i class="fas fa-plus"></i> Add Menu Item
+                    </button>
+                </div>
+                <div class="section-box">
+                    <div id="navigationList" class="sortable-list"></div>
+                </div>
+            </section>
+
+            <!-- Users Section (Admin Only) -->
+            <section id="users-section" class="section">
+                <div class="section-header">
+                    <h2>User Management</h2>
+                    <button class="btn btn-success btn-sm" onclick="openUserForm()" id="addUserBtn" style="display: none;">
+                        <i class="fas fa-plus"></i> Add User
+                    </button>
+                </div>
+                <div class="section-box">
+                    <div id="usersList" class="users-list"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+
+    <!-- Modal for forms -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
